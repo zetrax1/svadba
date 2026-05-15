@@ -11,8 +11,7 @@ export default function Hero() {
         </h1>
         <div className="hero__divider" />
         <p className="hero__date">19. septembra 2026</p>
-        {/* TODO: Replace with your venue name */}
-        <p className="hero__venue-hint">— Miesto konania —</p>
+        <p className="hero__venue-hint">Tajna Vineyards &amp; Winery · Tajná, Slovakia</p>
       </div>
       <div className="hero__scroll">
         <span>Scroll</span>

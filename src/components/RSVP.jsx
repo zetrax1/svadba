@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
-// TODO: Sign up at https://formspree.io, create a form, and replace YOUR_FORM_ID below.
-const FORMSPREE_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID'
+// TODO: Paste your deployed Apps Script web app URL here
+const SCRIPT_ENDPOINT = 'https://script.google.com/macros/s/AKfycbx5WIqf8tWlIdlhVEw4dc_MHRoNf8XfeW6YsGvfLhuD95rEezk11oJdgV3AT_VeLQ-9/exec'
 
 const INITIAL = { name: '', email: '', attendance: '', guests: '1', dietary: '', message: '' }
 
@@ -21,19 +21,17 @@ export default function RSVP() {
     setLoading(true)
     setError(null)
     try {
-      const res = await fetch(FORMSPREE_ENDPOINT, {
+      // no-cors: Apps Script redirects to a different subdomain so the browser
+      // can't read the response — but the POST goes through and the sheet is written.
+      await fetch(SCRIPT_ENDPOINT, {
         method:  'POST',
-        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        mode:    'no-cors',
+        headers: { 'Content-Type': 'text/plain' },
         body:    JSON.stringify(form),
       })
-      if (res.ok) {
-        setSubmitted(true)
-      } else {
-        setError('Odoslanie sa nepodarilo. Skúste to prosím znova.')
-      }
-    } catch {
-      // Formspree not yet configured — show success for local preview
       setSubmitted(true)
+    } catch {
+      setError('Nepodarilo sa pripojiť. Skontrolujte internetové pripojenie.')
     } finally {
       setLoading(false)
     }
@@ -56,7 +54,7 @@ export default function RSVP() {
     <section id="rsvp" className="rsvp">
       <div className="container">
         <div className="section-header">
-          <div className="ornament"><span className="ornament-icon">♥</span></div>
+          <div className="ornament"><span className="ornament-icon">✿</span></div>
           <h2>Potvrďte účasť</h2>
           <p>Prosíme o odpoveď do 31. júla 2026</p>
         </div>

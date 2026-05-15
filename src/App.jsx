@@ -4,6 +4,7 @@ import Countdown from './components/Countdown'
 import Schedule from './components/Schedule'
 import WeddingParty from './components/WeddingParty'
 import Venue from './components/Venue'
+import Accommodation from './components/Accommodation'
 import RSVP from './components/RSVP'
 import Footer from './components/Footer'
 
@@ -14,9 +15,10 @@ export default function App() {
       <main>
         <Hero />
         <Countdown />
-        <Schedule />
         <WeddingParty />
         <Venue />
+        <Accommodation />
+        <Schedule />
         <RSVP />
       </main>
       <Footer />

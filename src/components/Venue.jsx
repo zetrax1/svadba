@@ -1,56 +1,107 @@
-// TODO: Update VENUE_NAME, VENUE_ADDRESS, LAT, and LON to your real venue.
+﻿import VenueMap from './VenueMap'
 
-const VENUE_NAME    = 'Miesto konania'       // e.g. "Kaštieľ Krasňany"
-const VENUE_TYPE    = 'Miesto svadby'         // e.g. "Reštaurácia & Hotel"
-const VENUE_ADDRESS = ['Ulica 123', '821 01 Bratislava', 'Slovensko']
+const CHURCH_NAME    = 'Kostol Preblahoslavenej Panny Márie'
+const CHURCH_ADDRESS = ['Hlavná 2/4', '952 01 Vráble', 'Slovensko']
+const CHURCH_LAT = 48.2396027
+const CHURCH_LON = 18.3031150
 
-// Replace with your venue's actual GPS coordinates
-const LAT = 48.148
-const LON = 17.107
+const WINERY_NAME    = 'Tajna Vineyards & Winery'
+const WINERY_TYPE    = 'Rodinné boutique vinárstvo'
+const WINERY_ADDRESS = ['Tajná 163', '952 01 Tajná', 'Slovensko']
+const WINERY_LAT = 48.2550279
+const WINERY_LON = 18.3587829
 
-const mapsNavUrl = `https://www.google.com/maps/search/?api=1&query=${LAT},${LON}`
-const osmEmbed   = `https://www.openstreetmap.org/export/embed.html?bbox=${LON - 0.05},${LAT - 0.03},${LON + 0.05},${LAT + 0.03}&layer=mapnik&marker=${LAT},${LON}`
+function mapsUrl(lat, lon) {
+  return `https://www.google.com/maps/search/?api=1&query=${lat},${lon}`
+}
 
 export default function Venue() {
   return (
     <section id="miesto" className="venue">
       <div className="container">
         <div className="section-header">
-          <div className="ornament"><span className="ornament-icon">✦</span></div>
-          <h2>Miesto konania</h2>
+          <div className="ornament"><span className="ornament-icon">✿</span></div>
+          <h2>Miesta konania</h2>
           <p>Kde sa stretneme</p>
         </div>
-      </div>
-      <div className="venue__body">
-        <div className="venue__info">
-          <h3>{VENUE_NAME}</h3>
-          <p className="venue__subtitle">{VENUE_TYPE}</p>
-          <p className="venue__address">
-            {VENUE_ADDRESS.map((line, i) => (
-              <span key={i}>{line}{i < VENUE_ADDRESS.length - 1 && <br />}</span>
-            ))}
-          </p>
-          <div className="venue__details">
-            <div className="venue__detail">
-              <span className="venue__detail-icon">📅</span>
-              <span>Sobota, 19. september 2026</span>
-            </div>
-            <div className="venue__detail">
-              <span className="venue__detail-icon">🕒</span>
-              <span>Začiatok o 14:00</span>
-            </div>
-            <div className="venue__detail">
-              <span className="venue__detail-icon">🚗</span>
-              <span>Parkovanie k dispozícii</span>
+
+        {/* Two info blocks side by side */}
+        <div className="venue__two-col">
+
+          <div className="venue__block">
+            <div className="venue__block-label">I. Svadobný obrad</div>
+            <div className="venue__info">
+              <h3>{CHURCH_NAME}</h3>
+              <p className="venue__subtitle">Rímskokatolícky kostol · Vráble</p>
+              <p className="venue__address">
+                {CHURCH_ADDRESS.map((line, i) => (
+                  <span key={i}>{line}{i < CHURCH_ADDRESS.length - 1 && <br />}</span>
+                ))}
+              </p>
+              <div className="venue__details">
+                <div className="venue__detail">
+                  <span className="venue__detail-icon">📅</span>
+                  <span>Sobota, 19. september 2026</span>
+                </div>
+                <div className="venue__detail">
+                  <span className="venue__detail-icon">🕒</span>
+                  <span>Príchod o 14:00 · Obrad o 15:00</span>
+                </div>
+                <div className="venue__detail">
+                  <span className="venue__detail-icon">🚗</span>
+                  <span>Parkovanie v okolí kostola</span>
+                </div>
+              </div>
+              <a href={mapsUrl(CHURCH_LAT, CHURCH_LON)} target="_blank" rel="noopener noreferrer" className="venue__btn">
+                ↗ Navigovať
+              </a>
             </div>
           </div>
-          <a href={mapsNavUrl} target="_blank" rel="noopener noreferrer" className="venue__btn">
-            ↗ Navigovať
-          </a>
+
+          <div className="venue__col-divider" />
+
+          <div className="venue__block">
+            <div className="venue__block-label">II. Svadobná hostina</div>
+            <div className="venue__info">
+              <h3>{WINERY_NAME}</h3>
+              <p className="venue__subtitle">{WINERY_TYPE}</p>
+              <p className="venue__address">
+                {WINERY_ADDRESS.map((line, i) => (
+                  <span key={i}>{line}{i < WINERY_ADDRESS.length - 1 && <br />}</span>
+                ))}
+              </p>
+              <div className="venue__details">
+                <div className="venue__detail">
+                  <span className="venue__detail-icon">🕒</span>
+                  <span>Začiatok o 18:00</span>
+                </div>
+                <div className="venue__detail">
+                  <span className="venue__detail-icon">🚗</span>
+                  <span>Parkovanie k dispozícii</span>
+                </div>
+                <div className="venue__detail">
+                  <span className="venue__detail-icon">🚌</span>
+                  <span>Cca 10 min od Vráb autom</span>
+                </div>
+              </div>
+              <a href={mapsUrl(WINERY_LAT, WINERY_LON)} target="_blank" rel="noopener noreferrer" className="venue__btn">
+                ↗ Navigovať
+              </a>
+            </div>
+          </div>
+
         </div>
-        <div className="venue__map">
-          <iframe src={osmEmbed} title="Mapa miesta konania" allowFullScreen />
+
+        {/* Single combined map below */}
+        <div className="venue__map-legend">
+          <span className="venue__map-legend-item venue__map-legend-item--blue">I — Kostol, Vráble</span>
+          <span className="venue__map-legend-sep">·</span>
+          <span className="venue__map-legend-item venue__map-legend-item--sage">II — Tajna Winery</span>
+          <span className="venue__map-legend-sep">·</span>
+          <span className="venue__map-legend-route">— trasa (~10 min)</span>
         </div>
+        <VenueMap />
+
       </div>
     </section>
   )

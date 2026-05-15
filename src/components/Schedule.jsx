@@ -1,11 +1,10 @@
-// TODO: Update times and events to match your actual wedding day program
 const events = [
-  { time: '14:00', event: 'Príchod hostí',       desc: 'Vítanie svadobných hostí' },
-  { time: '15:00', event: 'Svadobný obrad',       desc: 'Slávnostný sobášny obrad' },
-  { time: '16:30', event: 'Gratulačný sprievod',  desc: 'Blahoželania & spoločné fotografie' },
-  { time: '18:00', event: 'Slávnostná hostina',   desc: 'Večera a prvé prípitky' },
-  { time: '20:00', event: 'Prvý tanec',            desc: 'Tanec novomanželov' },
-  { time: '20:30', event: 'Zábava & tanec',        desc: 'Hudba, tanec a oslava do rána' },
+  { time: '14:00', event: 'Príchod hostí',        desc: 'Vítanie svadobných hostí', location: 'Kostol Preblahoslavenej Panny Márie, Vráble' },
+  { time: '15:00', event: 'Svadobný obrad',        desc: 'Slávnostný sobášny obrad', location: 'Kostol Preblahoslavenej Panny Márie, Vráble' },
+  { time: '16:30', event: 'Gratulačný sprievod',   desc: 'Blahoželania & spoločné fotografie', location: 'Tajna Vineyards & Winery' },
+  { time: '18:00', event: 'Slávnostná hostina',    desc: 'Večera a prvé prípitky', location: 'Tajna Vineyards & Winery' },
+  { time: '20:00', event: 'Prvý tanec',             desc: 'Tanec novomanželov', location: 'Tajna Vineyards & Winery' },
+  { time: '20:30', event: 'Zábava & tanec',         desc: 'Hudba, tanec a oslava do rána', location: 'Tajna Vineyards & Winery' },
 ]
 
 export default function Schedule() {
@@ -13,7 +12,7 @@ export default function Schedule() {
     <section id="program" className="schedule">
       <div className="container">
         <div className="section-header">
-          <div className="ornament"><span className="ornament-icon">✦</span></div>
+          <div className="ornament"><span className="ornament-icon">✿</span></div>
           <h2>Program dňa</h2>
           <p>19. septembra 2026</p>
         </div>
@@ -24,6 +23,7 @@ export default function Schedule() {
                 <div className="schedule__time">{item.time}</div>
                 <div className="schedule__event">{item.event}</div>
                 <div className="schedule__desc">{item.desc}</div>
+                <div className="schedule__location">📍 {item.location}</div>
               </div>
               <div className="schedule__dot" />
               <div className="schedule__spacer" />
