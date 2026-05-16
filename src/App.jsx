@@ -1,7 +1,7 @@
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import Countdown from './components/Countdown'
-import Schedule from './components/Schedule'
+// import Schedule from './components/Schedule'
 import WeddingParty from './components/WeddingParty'
 import Venue from './components/Venue'
 import Accommodation from './components/Accommodation'
@@ -18,7 +18,7 @@ export default function App() {
         <WeddingParty />
         <Venue />
         <Accommodation />
-        <Schedule />
+        {/* <Schedule /> */}
         <RSVP />
       </main>
       <Footer />

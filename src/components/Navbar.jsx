@@ -6,7 +6,7 @@ const links = [
   { label: 'Info',            href: '#party' },
   { label: 'Miesto',         href: '#miesto' },
   { label: 'Ubytovanie',     href: '#ubytovanie' },
-  { label: 'Program',        href: '#program' },
+  // { label: 'Program',        href: '#program' },
   { label: 'RSVP',           href: '#rsvp' },
 ]
 
