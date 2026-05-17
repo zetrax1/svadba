@@ -11,6 +11,8 @@ import Footer from './components/Footer'
 export default function App() {
   return (
     <>
+      <div className="floral-border floral-border--left" aria-hidden="true" />
+      <div className="floral-border floral-border--right" aria-hidden="true" />
       <Navbar />
       <main>
         <Hero />
