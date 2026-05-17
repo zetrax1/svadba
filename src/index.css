@@ -239,6 +239,58 @@ ul { list-style: none; }
 .rsvp__input::placeholder, .rsvp__textarea::placeholder { color: #b8cdd6; }
 .rsvp__input:focus, .rsvp__select:focus, .rsvp__textarea:focus { border-color: var(--blue-mid); box-shadow: 0 0 0 3px rgba(123, 167, 188, 0.15); }
 .rsvp__textarea { resize: vertical; min-height: 100px; }
+/* nav */
+.rsvp__nav { display: flex; justify-content: space-between; align-items: center; margin-top: 0.5rem; }
+.rsvp__next { padding: 0.65rem 2rem; background: var(--blue-dark); color: white; font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 700; border-radius: 2px; transition: background 0.2s, transform 0.2s; }
+.rsvp__next:hover:not(:disabled) { background: var(--blue-mid); transform: translateY(-1px); }
+.rsvp__next:disabled { opacity: 0.45; cursor: not-allowed; }
+.rsvp__back { padding: 0.65rem 1.2rem; background: transparent; color: var(--text-muted); font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; border: 1px solid var(--blue-light); border-radius: 2px; transition: border-color 0.2s, color 0.2s; }
+.rsvp__back:hover { border-color: var(--blue); color: var(--blue-dark); }
+/* yes/no choice */
+.rsvp__choice-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.rsvp__choice { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; padding: 1.4rem 1rem; border: 2px solid var(--blue-light); border-radius: 8px; background: white; transition: border-color 0.2s, background 0.2s; }
+.rsvp__choice:hover { border-color: var(--blue); }
+.rsvp__choice--yes { border-color: var(--blue-dark); background: var(--blue-faint); }
+.rsvp__choice--no  { border-color: var(--gold); background: #fdfaf3; }
+.rsvp__choice-emoji { font-size: 1.8rem; }
+.rsvp__choice-text { font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--blue-dark); font-weight: 600; }
+/* chips */
+.rsvp__chip-grid { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.rsvp__chip { padding: 0.4rem 0.9rem; border: 1px solid var(--blue-light); border-radius: 20px; font-size: 0.8rem; color: var(--blue-dark); background: white; transition: background 0.15s, border-color 0.15s; }
+.rsvp__chip:hover { border-color: var(--blue); }
+.rsvp__chip--selected { background: var(--blue-light); border-color: var(--blue-dark); font-weight: 600; }
+.rsvp__field-hint { font-size: 0.75rem; color: #b94040; margin-top: 0.25rem; }
+/* drink */
+.rsvp__drink-hint { font-size: 0.82rem; color: var(--text-muted); line-height: 1.5; }
+.rsvp__drink-choice { display: flex; flex-direction: column; gap: 0.6rem; margin-top: 0.5rem; }
+.rsvp__drink-option { display: flex; align-items: center; gap: 0.6rem; padding: 0.7rem 1rem; border: 1px solid var(--blue-light); border-radius: 6px; cursor: pointer; font-size: 0.88rem; color: var(--blue-dark); transition: border-color 0.15s, background 0.15s; }
+.rsvp__drink-option input[type="radio"] { accent-color: var(--blue-dark); }
+.rsvp__drink-option:hover { border-color: var(--blue); }
+.rsvp__drink-option--selected { border-color: var(--blue-dark); background: var(--blue-faint); font-weight: 600; }
+/* guests */
+.rsvp__guests-control { display: flex; align-items: center; gap: 1rem; }
+.rsvp__guests-control button { width: 32px; height: 32px; border: 1px solid var(--blue-light); border-radius: 50%; font-size: 1.1rem; color: var(--blue-dark); background: white; line-height: 1; transition: background 0.15s; }
+.rsvp__guests-control button:hover { background: var(--blue-faint); }
+.rsvp__guests-control span { font-size: 1rem; font-weight: 600; color: var(--blue-dark); min-width: 1.5rem; text-align: center; }
+/* seating */
+.rsvp__table-section { margin-bottom: 1.5rem; }
+.rsvp__table-label { font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.5rem; }
+.rsvp__table-layout { display: flex; flex-direction: column; align-items: center; gap: 0.4rem; }
+.rsvp__seat-row { display: flex; flex-wrap: wrap; gap: 0.35rem; justify-content: center; }
+.rsvp__table-surface { width: 100%; max-width: 420px; padding: 0.35rem; text-align: center; background: var(--blue-faint); border: 1px solid var(--blue-light); border-radius: 4px; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); }
+.rsvp__seat-btn { width: 30px; height: 30px; border: 1px solid var(--blue-light); border-radius: 4px; font-size: 0.72rem; color: var(--blue-dark); background: white; transition: background 0.12s, border-color 0.12s; }
+.rsvp__seat-btn:hover:not(:disabled) { background: var(--blue-faint); border-color: var(--blue); }
+.rsvp__seat-btn--selected { background: var(--blue-dark) !important; color: white !important; border-color: var(--blue-dark) !important; }
+.rsvp__seat-btn--taken { background: #f0f0f0; color: #bbb; cursor: not-allowed; border-color: #e0e0e0; }
+.rsvp__seat-legend { display: flex; gap: 1.2rem; justify-content: center; margin-top: 0.75rem; font-size: 0.75rem; color: var(--text-muted); }
+.rsvp__seat-legend span { display: flex; align-items: center; gap: 0.4rem; }
+.rsvp__seat-sample { display: inline-block; width: 14px; height: 14px; border-radius: 3px; border: 1px solid var(--blue-light); background: white; }
+.rsvp__seat-sample--taken { background: #f0f0f0; border-color: #e0e0e0; }
+.rsvp__seat-sample--selected { background: var(--blue-dark); border-color: var(--blue-dark); }
+.rsvp__seat-chosen { text-align: center; font-size: 0.85rem; color: var(--blue-dark); font-weight: 600; margin-top: 0.25rem; }
+.rsvp__seats-loading { text-align: center; font-size: 0.82rem; color: var(--text-muted); }
+/* error / submit */
+.rsvp__error { color: #b94040; font-size: 0.82rem; text-align: center; }
 .rsvp__consent { font-size: 0.72rem; color: var(--text-muted); text-align: center; line-height: 1.5; }
 .rsvp__submit { padding: 0.9rem 3rem; background: var(--blue-dark); color: white; font-size: 0.72rem; letter-spacing: 0.24em; text-transform: uppercase; font-weight: 700; border-radius: 2px; transition: background 0.3s, transform 0.2s; align-self: center; margin-top: 0.5rem; }
 .rsvp__submit:hover { background: var(--blue-mid); transform: translateY(-1px); }

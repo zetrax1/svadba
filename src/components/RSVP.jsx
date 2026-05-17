@@ -173,14 +173,11 @@ export default function RSVP() {
           <h2>Potvrďte účasť</h2>
           <p>Prosíme o odpoveď do 31. júla 2026</p>
         </div>
-        <form className="rsvp__form" onSubmit={handleSubmit}>
-          <div className="rsvp__row">
-            <div className="rsvp__field">
-              <label className="rsvp__label" htmlFor="name">Meno a priezvisko</label>
-              <input id="name" name="name" type="text" required autoComplete="name"
-                placeholder="Vaše meno" className="rsvp__input" maxLength={100}
-                value={form.name} onChange={handleChange} />
-            </div>
+        <div className="rsvp__wizard">
+          <div className="rsvp__dots">
+            {dotSteps.map(s => (
+              <span key={s} className={`rsvp__dot${step === s ? ' rsvp__dot--active' : ''}`} />
+            ))}
           </div>
 
           <div className="rsvp__card">
@@ -425,30 +422,7 @@ export default function RSVP() {
             )}
 
           </div>
-          <div className="rsvp__field">
-            <label className="rsvp__label" htmlFor="dietary">
-              Dietetické požiadavky (nepovinné)
-            </label>
-            <input id="dietary" name="dietary" type="text"
-              placeholder="Vegetarián, alergie, …" className="rsvp__input" maxLength={200}
-              value={form.dietary} onChange={handleChange} />
-          </div>
-          <div className="rsvp__field">
-            <label className="rsvp__label" htmlFor="message">
-              Správa pre novomanželov (nepovinné)
-            </label>
-            <textarea id="message" name="message"
-              placeholder="Vaša správa alebo blahoželanie…" className="rsvp__textarea" maxLength={500}
-              value={form.message} onChange={handleChange} />
-          </div>
-          {error && (
-            <p style={{ color: '#ffaaaa', fontSize: '0.85rem', textAlign: 'center' }}>{error}</p>
-          )}
-          <p className="rsvp__consent">Odoslaním súhlasíte s uložením vašich údajov výhradne za účelom organizácie svadby.</p>
-          <button type="submit" className="rsvp__submit" disabled={loading}>
-            {loading ? 'Odosielam…' : 'Potvrdiť účasť'}
-          </button>
-        </form>
+        </div>
       </div>
     </section>
   )
