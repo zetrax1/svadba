@@ -13,7 +13,11 @@ import Footer from './components/Footer'
 
 // Sekcie Program, Menu, Foto a Hudba sa zobrazia od 19.9.2026 o 15:30 (slovenský čas)
 const REVEAL_DATE = new Date('2026-09-19T15:30:00+02:00')
-const showWeddingDay = new Date() >= REVEAL_DATE
+// RSVP je viditeľné do polnoci po 10.9.2026 (t.j. do 11.9.2026 00:00)
+const RSVP_VISIBLE_UNTIL = new Date('2026-09-11T00:00:00+02:00')
+const now = new Date()
+const showWeddingDay = now >= REVEAL_DATE
+const showRsvp = now < RSVP_VISIBLE_UNTIL
 
 export default function App() {
   return (
@@ -31,7 +35,19 @@ export default function App() {
         {showWeddingDay && <Menu />}
         {showWeddingDay && <Foto />}
         {showWeddingDay && <Hudba />}
-        <RSVP />
+        {showRsvp ? (
+          <RSVP />
+        ) : (
+          <section id="rsvp" className="rsvp">
+            <div className="container">
+              <div className="rsvp__success">
+                <div className="rsvp__success-icon">💌</div>
+                <h3>Dotazník je uzavretý</h3>
+                <p>Ak ste nám nestihli potvrdiť svoju účasť, prosíme kontaktujte nás čo najskôr.</p>
+              </div>
+            </div>
+          </section>
+        )}
       </main>
       <Footer />
     </>

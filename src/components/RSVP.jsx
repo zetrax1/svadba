@@ -1,6 +1,9 @@
 ﻿import { useState, useEffect } from 'react'
 
-const SCRIPT_ENDPOINT = 'https://script.google.com/macros/s/AKfycbxzCNUCsaHS4_N-gPYtZP86qQjHjnPcINUDNv0QSacNSUAskSV3YYg_ks1DKicbGZDc/exec'
+const SCRIPT_ENDPOINT = 'https://script.google.com/macros/s/AKfycbwZlblyKZ7R-LCJ5C45BKSCoXBv15nRk2f4BjAId04zlXhKRNpaqeJUXQekFeBOtcI1/exec'
+const RSVP_TOKEN = import.meta.env.VITE_RSVP_TOKEN || ''
+const SUBMIT_COOLDOWN_MS = 60 * 1000
+const SUBMIT_COOLDOWN_KEY = 'rsvpSubmitBlockedUntil'
 
 const DIETARY_OPTIONS = [
   { id: 'none',        label: 'Bez obmedzení' },
@@ -34,6 +37,7 @@ export default function RSVP() {
   const [loading, setLoading] = useState(false)
   const [submitted, setSubmitted] = useState(false)
   const [error, setError]     = useState(null)
+  const [submitBlockedUntil, setSubmitBlockedUntil] = useState(0)
 
   const set = (field, value) => setForm(prev => ({ ...prev, [field]: value }))
 
@@ -81,6 +85,13 @@ export default function RSVP() {
   const [seatsFetchError, setSeatsFetchError] = useState(false)
 
   useEffect(() => {
+    const stored = Number(localStorage.getItem(SUBMIT_COOLDOWN_KEY) || '0')
+    if (!Number.isNaN(stored) && stored > Date.now()) {
+      setSubmitBlockedUntil(stored)
+    }
+  }, [])
+
+  useEffect(() => {
     if (step !== 3 && step !== 4) return
     setSeatsLoading(true)
     setSeatsFetchError(false)
@@ -110,6 +121,12 @@ export default function RSVP() {
   }, [step])
 
   const handleSubmit = async () => {
+    const now = Date.now()
+    if (submitBlockedUntil > now) {
+      setError('Formulár bol nedávno odoslaný. Skúste to prosím znovu neskôr.')
+      return
+    }
+
     setLoading(true)
     setError(null)
     try {
@@ -118,6 +135,7 @@ export default function RSVP() {
         mode:    'no-cors',
         headers: { 'Content-Type': 'text/plain' },
         body: JSON.stringify({
+          token:       RSVP_TOKEN,
           name:        form.name,
           attendance:  form.attendance,
           guests:      form.attendance === 'yes' ? form.guests : 0,
@@ -130,6 +148,10 @@ export default function RSVP() {
           message:     form.message,
         }),
       })
+
+      const blockedUntil = Date.now() + SUBMIT_COOLDOWN_MS
+      setSubmitBlockedUntil(blockedUntil)
+      localStorage.setItem(SUBMIT_COOLDOWN_KEY, String(blockedUntil))
       setSubmitted(true)
     } catch {
       setError('Nepodarilo sa pripojiť. Skontrolujte internetové pripojenie.')
@@ -168,7 +190,7 @@ export default function RSVP() {
         <div className="section-header">
           <div className="ornament"><span className="ornament-icon">✿</span></div>
           <h2>Potvrďte účasť</h2>
-          <p>Prosíme o odpoveď do 15. augusta 2026</p>
+          <p>Prosíme o odpoveď do 1. septembra 2026</p>
         </div>
         <div className="rsvp__wizard">
           <div className="rsvp__dots">
@@ -411,7 +433,7 @@ export default function RSVP() {
                 {error && <p className="rsvp__error">{error}</p>}
                 <div className="rsvp__nav">
                   <button className="rsvp__back" onClick={goBack}>← Späť</button>
-                  <button className="rsvp__submit" onClick={handleSubmit} disabled={loading}>
+                  <button className="rsvp__submit" onClick={handleSubmit} disabled={loading || submitBlockedUntil > Date.now()}>
                     {loading ? 'Odosielam…' : 'Odoslať ✓'}
                   </button>
                 </div>
