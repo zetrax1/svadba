@@ -3,28 +3,26 @@
     icon: '👗',
     title: 'Dress code',
     items: [
-      'Formálne oblečenie — spoločenské šaty, oblek',
-      'Preferujeme svetlé a pastelové odtiene',
-      'Prosíme vyhnúť sa bielej a krémovej farbe',
+      'Oblečte sa pohodlne, aby ste si mohli užiť tanec a zábavu až do rána',
+      'Žiadne farebné preferencie nie sú, oblečte si čo vám je príjemné a v čom sa cítite skvele',
+      'Prosíme dbajte na to že budeme vo vinárstve/viniciach, preto prispôsobte svoju obuv (ideálne žiadne ihličkové podpatky)',
     ],
   },
   {
     icon: '🚗',
     title: 'Doprava & parkovanie',
     items: [
-      'Obrad: parkovanie pri kostole v Vrábľoch',
-      'Hostina: bezplatné parkovisko priamo vo vinárni Tajna',
-      'Vzdialenosť kostol → vinárňa: cca 10 min autom',
-      'Odporúčame spoločnú dopravu — alkohol sa podávať bude 🍷',
+      'Obrad: parkovanie pri kostole v Vrábľoch/pri hoteli kde ste ubytovaní',
+      'Hostina: bezplatné parkovisko priamo vo vinárstve Tajna/odporúčame nechať auto pri hoteli kde ste ubytovaní, transport bude zabezpečený',
+      'Vzdialenosť kostol → vinárstvo: cca 10 min autom',
+      'Odporúčame spoločnú dopravu — aby sme si spolu mohli všetci pripiť 🍷',
     ],
   },
   {
     icon: '📞',
     title: 'Kontakt',
     items: [
-      'V prípade akýchkoľvek otázok nás kontaktujte:',
-      'Majka: +421 900 000 001',
-      'Vladko: +421 900 000 002',
+      'V prípade akýchkoľvek otázok nás kontaktujte',
     ],
   },
 ]

@@ -3,7 +3,7 @@ import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 
 const CHURCH = { lat: 48.2396027, lon: 18.3031150, label: 'I',  name: 'Kostol Preblahoslavenej Panny Márie', desc: 'Svadobný obrad · 15:00' }
-const WINERY = { lat: 48.2550279, lon: 18.3587829, label: 'II', name: 'Tajna Vineyards & Winery',             desc: 'Svadobná hostina · 18:00' }
+const WINERY = { lat: 48.2550279, lon: 18.3587829, label: 'II', name: 'Tajna Vineyards & Winery',             desc: 'Svadobná hostina · 16:00' }
 
 function pinIcon(label, bg) {
   return L.divIcon({

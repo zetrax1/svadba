@@ -8,28 +8,41 @@ const HOTEL_LON     = 18.3073725
 const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${HOTEL_LAT},${HOTEL_LON}`
 const osmEmbed = `https://www.openstreetmap.org/export/embed.html?bbox=${HOTEL_LON - 0.025},${HOTEL_LAT - 0.015},${HOTEL_LON + 0.025},${HOTEL_LAT + 0.015}&layer=mapnik&marker=${HOTEL_LAT},${HOTEL_LON}`
 
-// TODO: Replace placeholders with real recommendations for friends
 const friendsRecs = [
   {
-    name: 'Názov hotela / penziónu',
-    location: 'Vráble alebo okolie',
-    distance: 'X min od kostola',
-    link: 'https://booking.com',
-    note: 'Krátky popis alebo odporúčanie.',
+    name: 'Hotel Predium',
+    location: 'Vráble',
+    distance: 'Cca 5 min pešo od kostola',
+    link: 'https://www.predium.sk',
+    note: 'Hotel je priamo vo Vrábľoch.',
   },
   {
-    name: 'Názov hotela / penziónu',
-    location: 'Vráble alebo okolie',
-    distance: 'X min od kostola',
-    link: 'https://booking.com',
-    note: 'Krátky popis alebo odporúčanie.',
+    name: 'Penzión Siesta',
+    location: 'Vráble',
+    distance: 'Cca 5 min pešo od kostola',
+    link: 'https://www.penzionsiesta.sk/sk/',
+    note: 'Penzión je vo Vrábľoch.',
   },
   {
-    name: 'Názov hotela / penziónu',
-    location: 'Vráble alebo okolie',
-    distance: 'X min od kostola',
-    link: 'https://booking.com',
-    note: 'Krátky popis alebo odporúčanie.',
+    name: 'Penzión Granarollo',
+    location: 'Tesárske Mlyňany',
+    distance: 'Cca 10 min autom od kostola',
+    link: 'https://www.booking.com/Share-NiXRKkt',
+    note: 'Tento penzión je v Tesárskych Mlyňanoch, dajte nám prosím vedieť aby sme mohli zabezpečiť transport.',
+  },
+  {
+    name: 'Business Hotel Astrum Laus****',
+    location: 'Levice',
+    distance: 'Cca 20 min autom od kostola',
+    link: 'https://www.astrumlaus.sk',
+    note: 'Hotel je v Leviciach, dajte nám prosím vedieť aby sme mohli zabezpečiť transport.',
+  },
+  {
+    name: 'Hotel Lev****',
+    location: 'Levice',
+    distance: 'Cca 20 min autom od kostola',
+    link: 'https://www.hotellev.sk',
+    note: 'Hotel je v Leviciach, dajte nám prosím vedieť aby sme mohli zabezpečiť transport.',
   },
 ]
 
@@ -86,7 +99,7 @@ export default function Accommodation() {
                 <div className="accommodation__details">
                   <div className="accommodation__detail">
                     <span className="accommodation__detail-icon">📍</span>
-                    <span>Centrum Vráb · 3 min pešo od kostola</span>
+                    <span>Centrum Vrábľov, 5 min pešo od kostola</span>
                   </div>
                   <div className="accommodation__detail">
                     <span className="accommodation__detail-icon">🌙</span>
@@ -98,11 +111,11 @@ export default function Accommodation() {
                   </div>
                   <div className="accommodation__detail">
                     <span className="accommodation__detail-icon">🚗</span>
-                    <span>Cca 10 min od Tajna Winery</span>
+                    <span>Cca 10 min autom od Tajna Winery</span>
                   </div>
                 </div>
                 <a href={mapsUrl} target="_blank" rel="noopener noreferrer" className="venue__btn">
-                  ↗ Navigovať
+                  ↗ Otvoriť mapu
                 </a>
               </div>
               <div className="accommodation__map">
@@ -121,7 +134,7 @@ export default function Accommodation() {
             onToggle={() => toggle('friends')}
           >
             <p className="accommodation__rec-intro">
-              Vybrali sme niekoľko možností v okolí Vráb, ktoré odporúčame. Rezerváciu si zabezpečte individuálne.
+              Vybrali sme niekoľko možností v okolí, ktoré odporúčame. Rezerváciu si zabezpečte individuálne.
             </p>
             <div className="accommodation__rec-grid">
               {friendsRecs.map((rec, i) => (

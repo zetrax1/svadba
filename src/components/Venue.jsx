@@ -45,15 +45,11 @@ export default function Venue() {
                 </div>
                 <div className="venue__detail">
                   <span className="venue__detail-icon">🕒</span>
-                  <span>Príchod o 14:00 · Obrad o 15:00</span>
-                </div>
-                <div className="venue__detail">
-                  <span className="venue__detail-icon">🚗</span>
-                  <span>Parkovanie v okolí kostola</span>
+                  <span>Obrad o 15:00</span>
                 </div>
               </div>
               <a href={mapsUrl(CHURCH_LAT, CHURCH_LON)} target="_blank" rel="noopener noreferrer" className="venue__btn">
-                ↗ Navigovať
+                ↗ Otvoriť mapu
               </a>
             </div>
           </div>
@@ -73,19 +69,15 @@ export default function Venue() {
               <div className="venue__details">
                 <div className="venue__detail">
                   <span className="venue__detail-icon">🕒</span>
-                  <span>Začiatok o 18:00</span>
-                </div>
-                <div className="venue__detail">
-                  <span className="venue__detail-icon">🚗</span>
-                  <span>Parkovanie k dispozícii</span>
+                  <span>Začiatok o 16:00</span>
                 </div>
                 <div className="venue__detail">
                   <span className="venue__detail-icon">🚌</span>
-                  <span>Cca 10 min od Vráb autom</span>
+                  <span>Cca 10 min od kostola autom</span>
                 </div>
               </div>
               <a href={mapsUrl(WINERY_LAT, WINERY_LON)} target="_blank" rel="noopener noreferrer" className="venue__btn">
-                ↗ Navigovať
+                ↗ Otvoriť mapu
               </a>
             </div>
           </div>
@@ -96,7 +88,7 @@ export default function Venue() {
         <div className="venue__map-legend">
           <span className="venue__map-legend-item venue__map-legend-item--blue">I — Kostol, Vráble</span>
           <span className="venue__map-legend-sep">·</span>
-          <span className="venue__map-legend-item venue__map-legend-item--sage">II — Tajna Winery</span>
+          <span className="venue__map-legend-item venue__map-legend-item--sage">II — Tajna Vinárstvo</span>
           <span className="venue__map-legend-sep">·</span>
           <span className="venue__map-legend-route">— trasa (~10 min)</span>
         </div>

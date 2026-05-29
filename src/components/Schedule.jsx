@@ -1,10 +1,14 @@
 const events = [
-  { time: '14:00', event: 'Príchod hostí',        desc: 'Vítanie svadobných hostí', location: 'Kostol Preblahoslavenej Panny Márie, Vráble' },
+  { time: '',      event: 'Príchod hostí',        desc: 'Ubytovanie hostí', location: 'Podľa ubytovacieho zariadenia' },
   { time: '15:00', event: 'Svadobný obrad',        desc: 'Slávnostný sobášny obrad', location: 'Kostol Preblahoslavenej Panny Márie, Vráble' },
-  { time: '16:30', event: 'Gratulačný sprievod',   desc: 'Blahoželania & spoločné fotografie', location: 'Tajna Vineyards & Winery' },
-  { time: '18:00', event: 'Slávnostná hostina',    desc: 'Večera a prvé prípitky', location: 'Tajna Vineyards & Winery' },
-  { time: '20:00', event: 'Prvý tanec',             desc: 'Tanec novomanželov', location: 'Tajna Vineyards & Winery' },
-  { time: '20:30', event: 'Zábava & tanec',         desc: 'Hudba, tanec a oslava do rána', location: 'Tajna Vineyards & Winery' },
+  { time: '16:00', event: 'Presun do vinárstva',   desc: 'Spoločný presun na svadobnú recepciu', location: 'Tajna Vineyards & Winery' },
+  { time: '16:30', event: 'Slávnostná hostina',    desc: 'Večera a prvé prípitky', location: 'Tajna Vineyards & Winery' },
+  { time: '',      event: 'Prvý tanec',             desc: 'Tanec novomanželov', location: '' },
+  { time: '',      event: 'Zábava & tanec',         desc: 'Hudba, tanec a oslava do rána', location: '' },
+  { time: '19:00', event: 'Západ slnka',             desc: 'Romantický západ slnka na lúke vo viniciach', location: '' },
+  { time: 'od 20:00', event: 'Grilovačka',              desc: '', location: '' },
+  { time: '22:30', event: 'Someliér',                desc: 'Ochutnávka vína', location: '' },
+  { time: '',      event: 'Zábava až do rána',       desc: '', location: '' },
 ]
 
 export default function Schedule() {
@@ -20,10 +24,10 @@ export default function Schedule() {
           {events.map((item, i) => (
             <div key={i} className="schedule__item">
               <div className="schedule__content">
-                <div className="schedule__time">{item.time}</div>
+                {item.time && <div className="schedule__time">{item.time}</div>}
                 <div className="schedule__event">{item.event}</div>
                 <div className="schedule__desc">{item.desc}</div>
-                <div className="schedule__location">📍 {item.location}</div>
+                {item.location && <div className="schedule__location">📍 {item.location}</div>}
               </div>
               <div className="schedule__dot" />
               <div className="schedule__spacer" />

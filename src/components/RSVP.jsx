@@ -14,11 +14,8 @@ const DIETARY_OPTIONS = [
 const SPIRIT_OPTIONS = [
   'Pivo',
   'Gin',
-  'Fernet',
-  'Borovička',
   'Whisky',
   'Rum',
-  'Vodka',
   'Sekt / Prosecco',
   'Iné',
   'Nepijem alkohol',
@@ -171,7 +168,7 @@ export default function RSVP() {
         <div className="section-header">
           <div className="ornament"><span className="ornament-icon">✿</span></div>
           <h2>Potvrďte účasť</h2>
-          <p>Prosíme o odpoveď do 31. júla 2026</p>
+          <p>Prosíme o odpoveď do 15. augusta 2026</p>
         </div>
         <div className="rsvp__wizard">
           <div className="rsvp__dots">
@@ -189,7 +186,7 @@ export default function RSVP() {
                 <h3 className="rsvp__step-title">Ako sa voláš?</h3>
                 <div className="rsvp__fields">
                   <div className="rsvp__field">
-                    <label className="rsvp__label" htmlFor="name">Meno a priezvisko</label>
+                    <label className="rsvp__label" htmlFor="name">Meno hosťa</label>
                     <input id="name" type="text" required autoComplete="name"
                       placeholder="Vaše meno" className="rsvp__input"
                       value={form.name} onChange={e => set('name', e.target.value)} />
@@ -239,7 +236,7 @@ export default function RSVP() {
                 <h3 className="rsvp__step-title">Jedlo & pitie</h3>
 
                 <div className="rsvp__field">
-                  <label className="rsvp__label">Stravovanie</label>
+                  <p className="rsvp__label" id="label-stravovanie">Stravovanie</p>
                   <div className="rsvp__chip-grid">
                     {DIETARY_OPTIONS.map(opt => (
                       <button key={opt.id}
@@ -262,8 +259,8 @@ export default function RSVP() {
                 </div>
 
                 <div className="rsvp__field">
-                  <label className="rsvp__label">Pitie</label>
-                  <p className="rsvp__drink-hint">Oslavujeme vo vinárni, takže dúfame, že si dáte víno 🍷 Ak nie, radi pre vás zabezpečíme niečo iné.</p>
+                  <p className="rsvp__label" id="label-pitie">Pitie</p>
+                  <p className="rsvp__drink-hint">Oslavujeme vo vinárstve, takže dúfame, že si dáte víno 🍷 Ak nie, radi pre vás zabezpečíme niečo iné.</p>
                   <div className="rsvp__drink-choice">
                     <label className={`rsvp__drink-option${form.drink === 'wine' ? ' rsvp__drink-option--selected' : ''}`}>
                       <input type="radio" name="drink" value="wine"
@@ -405,8 +402,8 @@ export default function RSVP() {
                   {form.attendance === 'yes' ? 'Niečo na záver?' : 'Chceš nám niečo odkázať?'}
                 </h3>
                 <div className="rsvp__field">
-                  <label className="rsvp__label">Správa pre novomanželov (nepovinné)</label>
-                  <textarea className="rsvp__textarea"
+                  <label className="rsvp__label" htmlFor="rsvp-message">Správa pre novomanželov (nepovinné)</label>
+                  <textarea id="rsvp-message" className="rsvp__textarea"
                     placeholder={form.attendance === 'yes' ? 'Blahoželanie, pieseň, vtip… 💛' : 'Odkaz, prianie… 💌'}
                     value={form.message}
                     onChange={e => set('message', e.target.value)} />
