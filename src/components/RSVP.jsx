@@ -1,6 +1,6 @@
 ﻿import { useState, useEffect } from 'react'
 
-const SCRIPT_ENDPOINT = 'https://script.google.com/macros/s/AKfycbz23TNt1LP-N_XUUn2S7uCgDnKp8-GZWvh1eUX6w4V1lx3Szh6ToC74XdJYkfmrBKrJ/exec'
+const SCRIPT_ENDPOINT = 'https://script.google.com/macros/s/AKfycbzgVv7PCbvMwYWHgBTq-n5o1itINbFgvTnFbaopIJgiZilt4ONTEnRVCL0kvcUrSl3C/exec'
 const RSVP_TOKEN = import.meta.env.VITE_RSVP_TOKEN || ''
 const SUBMIT_COOLDOWN_MS = 60 * 1000
 const SUBMIT_COOLDOWN_KEY = 'rsvpSubmitBlockedUntil'
@@ -29,7 +29,7 @@ const SEAT_TABLES = [  { id: 'inside',  icon: '🏛️', label: 'Vnútri' },
   { id: 'outside', icon: '🌙', label: 'Vonku / Terasa' },
 ]
 
-const INITIAL = { name: '', attendance: '', guests: 1, dietary: [], allergyNote: '', drink: '', spirits: [], spiritNote: '', seat: '', message: '' }
+const INITIAL = { name: '', attendance: '', dietary: [], allergyNote: '', drink: '', spirits: [], spiritNote: '', seat: '', message: '' }
 
 export default function RSVP() {
   const [form, setForm]       = useState(INITIAL)
@@ -143,7 +143,6 @@ export default function RSVP() {
           token:       RSVP_TOKEN,
           name:        form.name,
           attendance:  form.attendance,
-          guests:      form.attendance === 'yes' ? form.guests : 0,
           dietary:     form.dietary.join(', '),
           drink:       form.drink,
           spirits:     form.spirits.join(', '),
