@@ -127,6 +127,11 @@ export default function RSVP() {
       return
     }
 
+    if (!RSVP_TOKEN) {
+      setError('Formulár nie je správne nakonfigurovaný. Prosíme kontaktujte nás.')
+      return
+    }
+
     setLoading(true)
     setError(null)
     try {
