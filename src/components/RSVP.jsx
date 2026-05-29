@@ -1,6 +1,6 @@
 ﻿import { useState, useEffect } from 'react'
 
-const SCRIPT_ENDPOINT = 'https://script.google.com/macros/s/AKfycbwZlblyKZ7R-LCJ5C45BKSCoXBv15nRk2f4BjAId04zlXhKRNpaqeJUXQekFeBOtcI1/exec'
+const SCRIPT_ENDPOINT = 'https://script.google.com/macros/s/AKfycbz23TNt1LP-N_XUUn2S7uCgDnKp8-GZWvh1eUX6w4V1lx3Szh6ToC74XdJYkfmrBKrJ/exec'
 const RSVP_TOKEN = import.meta.env.VITE_RSVP_TOKEN || ''
 const SUBMIT_COOLDOWN_MS = 60 * 1000
 const SUBMIT_COOLDOWN_KEY = 'rsvpSubmitBlockedUntil'
