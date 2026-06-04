@@ -59,12 +59,12 @@ export default function VenueMap() {
       .then(r => r.json())
       .then(data => {
         const coords = data.routes[0].geometry.coordinates.map(([lon, lat]) => [lat, lon])
-        L.polyline(coords, { color: '#C8A45A', weight: 4, opacity: 0.75, dashArray: '8 5' }).addTo(map)
+        L.polyline(coords, { color: '#2213af', weight: 4, opacity: 0.75, dashArray: '8 5' }).addTo(map)
       })
       .catch(() => {
         // Fallback straight line if OSRM is unavailable
         L.polyline([[CHURCH.lat, CHURCH.lon], [WINERY.lat, WINERY.lon]], {
-          color: '#C8A45A', weight: 3, opacity: 0.55, dashArray: '8 5',
+          color: '#2213af', weight: 3, opacity: 0.55, dashArray: '8 5',
         }).addTo(map)
       })
 
