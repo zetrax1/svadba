@@ -1,6 +1,6 @@
 ﻿import { useState, useEffect } from 'react'
 
-const SCRIPT_ENDPOINT = 'https://script.google.com/macros/s/AKfycbzgVv7PCbvMwYWHgBTq-n5o1itINbFgvTnFbaopIJgiZilt4ONTEnRVCL0kvcUrSl3C/exec'
+const SCRIPT_ENDPOINT = 'https://script.google.com/macros/s/AKfycbwdCeQ8GMT-d0pWWZa0SKVibiGxXl6p6ylUZqQHpdxigZZeuIRNteYp65wDWMLKI87A/exec'
 const RSVP_TOKEN = import.meta.env.VITE_RSVP_TOKEN || ''
 const SUBMIT_COOLDOWN_MS = 60 * 1000
 const SUBMIT_COOLDOWN_KEY = 'rsvpSubmitBlockedUntil'
@@ -25,11 +25,7 @@ const SPIRIT_OPTIONS = [
 ]
 
 
-const SEAT_TABLES = [  { id: 'inside',  icon: '🏛️', label: 'Vnútri' },
-  { id: 'outside', icon: '🌙', label: 'Vonku / Terasa' },
-]
-
-const INITIAL = { name: '', attendance: '', dietary: [], allergyNote: '', drink: '', spirits: [], spiritNote: '', seat: '', message: '' }
+const INITIAL = { name: '', attendance: '', dietary: [], allergyNote: '', drink: '', spirits: [], spiritNote: '', message: '' }
 
 export default function RSVP() {
   const [form, setForm]       = useState(INITIAL)
@@ -75,14 +71,17 @@ export default function RSVP() {
     })
   }
 
-  // Steps: 1 → 2 → 3 → 4 → 5 (if yes)  |  1 → 2 → 5 (if no)
-  const goNext = () => setStep(s => (s === 2 && form.attendance === 'no') ? 5 : s + 1)
-  const goBack = () => setStep(s => (s === 5 && form.attendance === 'no') ? 2 : s - 1)
-
-  const [takenSeats, setTakenSeats]     = useState([])
-  const [seatNameMap, setSeatNameMap]   = useState({})
-  const [seatsLoading, setSeatsLoading] = useState(false)
-  const [seatsFetchError, setSeatsFetchError] = useState(false)
+  // Steps: 1 → 2 → 3 → 5 (if yes)  |  1 → 2 → 5 (if no)
+  const goNext = () => setStep(s => {
+    if (s === 2 && form.attendance === 'no') return 5
+    if (s === 3) return 5
+    return s + 1
+  })
+  const goBack = () => setStep(s => {
+    if (s === 5 && form.attendance === 'no') return 2
+    if (s === 5) return 3
+    return s - 1
+  })
 
   useEffect(() => {
     const stored = Number(localStorage.getItem(SUBMIT_COOLDOWN_KEY) || '0')
@@ -90,35 +89,6 @@ export default function RSVP() {
       setSubmitBlockedUntil(stored)
     }
   }, [])
-
-  useEffect(() => {
-    if (step !== 3 && step !== 4) return
-    setSeatsLoading(true)
-    setSeatsFetchError(false)
-    fetch(SCRIPT_ENDPOINT, { redirect: 'follow' })
-      .then(r => {
-        if (!r.ok) throw new Error(`HTTP ${r.status}`)
-        return r.json()
-      })
-      .then(data => {
-        if (!Array.isArray(data.taken)) throw new Error('unexpected shape')
-        // support both old string[] format and new {seat,name}[] format
-        if (data.taken.length === 0 || typeof data.taken[0] === 'string') {
-          setTakenSeats(data.taken)
-          setSeatNameMap({})
-        } else {
-          setTakenSeats(data.taken.map(t => t.seat))
-          const map = {}
-          data.taken.forEach(t => { if (t.name) map[t.seat] = t.name })
-          setSeatNameMap(map)
-        }
-      })
-      .catch(err => {
-        console.warn('[RSVP] seat fetch failed:', err)
-        setSeatsFetchError(true)
-      })
-      .finally(() => setSeatsLoading(false))
-  }, [step])
 
   const handleSubmit = async () => {
     const now = Date.now()
@@ -148,7 +118,6 @@ export default function RSVP() {
           spirits:     form.spirits.join(', '),
           allergyNote: form.allergyNote,
           spiritNote:  form.spiritNote,
-          seat:        form.seat,
           message:     form.message,
         }),
       })
@@ -186,13 +155,13 @@ export default function RSVP() {
     )
   }
 
-  const dotSteps = form.attendance === 'no' ? [1, 2, 5] : [1, 2, 3, 4, 5]
+  const dotSteps = form.attendance === 'no' ? [1, 2, 5] : [1, 2, 3, 5]
 
   return (
     <section id="rsvp" className="rsvp">
       <div className="container">
         <div className="section-header">
-          <div className="ornament"><span className="ornament-icon">✿</span></div>
+
           <h2>Potvrďte účasť</h2>
           <p>Prosíme o odpoveď do 1. septembra 2026</p>
         </div>
@@ -208,7 +177,7 @@ export default function RSVP() {
             {/* ── Step 1: Name + Email ── */}
             {step === 1 && (
               <div className="rsvp__step">
-                <p className="rsvp__step-q">Krok 1 z 5</p>
+                <p className="rsvp__step-q">Krok 1 z 4</p>
                 <h3 className="rsvp__step-title">Ako sa voláš?</h3>
                 <div className="rsvp__fields">
                   <div className="rsvp__field">
@@ -230,7 +199,7 @@ export default function RSVP() {
             {/* ── Step 2: Attendance ── */}
             {step === 2 && (
               <div className="rsvp__step">
-                <p className="rsvp__step-q">Krok 2 z 5</p>
+                <p className="rsvp__step-q">Krok 2 z 4</p>
                 <h3 className="rsvp__step-title">Uvidíme sa, {form.name.split(' ')[0]}?</h3>
                 <div className="rsvp__choice-grid">
                   <button
@@ -258,7 +227,7 @@ export default function RSVP() {
             {/* ── Step 3: Dietary + Drinks (only if attending) ── */}
             {step === 3 && (
               <div className="rsvp__step">
-                <p className="rsvp__step-q">Krok 3 z 5</p>
+                <p className="rsvp__step-q">Krok 3 z 4</p>
                 <h3 className="rsvp__step-title">Jedlo & pitie</h3>
 
                 <div className="rsvp__field">
@@ -341,96 +310,17 @@ export default function RSVP() {
               </div>
             )}
 
-            {/* ── Step 4: Seating preference (only if attending) ── */}
-            {step === 4 && (
-              <div className="rsvp__step">
-                <p className="rsvp__step-q">Krok 4 z 5</p>
-                <h3 className="rsvp__step-title">Kde si sadneš? 🪑</h3>
-                <p className="rsvp__drink-hint">Vyber si miesto pri jednom zo stolov. Klikni na stoličku — klikni znova pre zrušenie výberu.</p>
-                <p className="rsvp__drink-hint" style={{ marginTop: '-0.25rem' }}>
-                  🙏 Prosíme, nenechávajte vedľa seba jedno voľné miesto — nech si každý nájde suseda!
-                </p>
-                {seatsLoading && <p className="rsvp__seats-loading">Načítavam obsadenosť…</p>}
-                {seatsFetchError && (
-                  <p className="rsvp__seats-loading" style={{ color: '#b94040' }}>
-                    ⚠️ Nepodarilo sa načítať obsadenosť — miesta môžu byť nepresné.
-                  </p>
-                )}
-                {SEAT_TABLES.map(({ id, icon, label }) => (
-                  <div key={id} className="rsvp__table-section">
-                    <p className="rsvp__table-label">{icon} {label}</p>
-                    {id === 'outside' && (
-                      <p className="rsvp__drink-hint" style={{ marginBottom: '0.5rem' }}>
-                        ☂️ Terasa je krytá strechou a vykurovaná — aj v septembri bude pohodlne teplo.
-                      </p>
-                    )}
-                    <div className="rsvp__table-layout">
-                      <div className="rsvp__seat-row">
-                        {Array.from({ length: 10 }, (_, i) => {
-                          const sid = `${id}-${i + 1}`
-                          const taken = takenSeats.includes(sid) && form.seat !== sid
-                          const tip = taken
-                            ? `Miesto ${i + 1} — ${seatNameMap[sid] || 'obsadené'}`
-                            : `Miesto ${i + 1}`
-                          return (
-                            <button key={sid} title={tip}
-                              className={`rsvp__seat-btn${form.seat === sid ? ' rsvp__seat-btn--selected' : taken ? ' rsvp__seat-btn--taken' : ''}`}
-                              onClick={() => !taken && set('seat', form.seat === sid ? '' : sid)}
-                              disabled={taken}
-                            >{i + 1}</button>
-                          )
-                        })}
-                      </div>
-                      <div className="rsvp__table-surface">{label}</div>
-                      <div className="rsvp__seat-row">
-                        {Array.from({ length: 10 }, (_, i) => {
-                          const sid = `${id}-${i + 11}`
-                          const taken = takenSeats.includes(sid) && form.seat !== sid
-                          const tip = taken
-                            ? `Miesto ${i + 11} — ${seatNameMap[sid] || 'obsadené'}`
-                            : `Miesto ${i + 11}`
-                          return (
-                            <button key={sid} title={tip}
-                              className={`rsvp__seat-btn${form.seat === sid ? ' rsvp__seat-btn--selected' : taken ? ' rsvp__seat-btn--taken' : ''}`}
-                              onClick={() => !taken && set('seat', form.seat === sid ? '' : sid)}
-                              disabled={taken}
-                            >{i + 11}</button>
-                          )
-                        })}
-                      </div>
-                    </div>
-                  </div>
-                ))}
-                {!seatsLoading && (
-                  <div className="rsvp__seat-legend">
-                    <span><span className="rsvp__seat-sample" /> voľné</span>
-                    <span><span className="rsvp__seat-sample rsvp__seat-sample--taken" /> obsadené</span>
-                    <span><span className="rsvp__seat-sample rsvp__seat-sample--selected" /> tvoje</span>
-                  </div>
-                )}
-                {form.seat && (
-                  <p className="rsvp__seat-chosen">
-                    ✨ Vybrané: {form.seat.startsWith('inside') ? '🏛️ Vnútri' : '🌙 Vonku'}, miesto č. {form.seat.split('-')[1]}
-                  </p>
-                )}
-                <div className="rsvp__nav">
-                  <button className="rsvp__back" onClick={goBack}>← Späť</button>
-                  <button className="rsvp__next" onClick={goNext}>Ďalej →</button>
-                </div>
-              </div>
-            )}
-
             {/* ── Step 5: Message + Submit ── */}
             {step === 5 && (
               <div className="rsvp__step">
-                <p className="rsvp__step-q">{form.attendance === 'yes' ? 'Krok 5 z 5' : 'Krok 3 z 3'}</p>
+                <p className="rsvp__step-q">{form.attendance === 'yes' ? 'Krok 4 z 4' : 'Krok 3 z 3'}</p>
                 <h3 className="rsvp__step-title">
                   {form.attendance === 'yes' ? 'Niečo na záver?' : 'Chceš nám niečo odkázať?'}
                 </h3>
                 <div className="rsvp__field">
                   <label className="rsvp__label" htmlFor="rsvp-message">Správa pre novomanželov (nepovinné)</label>
                   <textarea id="rsvp-message" className="rsvp__textarea"
-                    placeholder={form.attendance === 'yes' ? 'Blahoželanie, pieseň, vtip… 💛' : 'Odkaz, prianie… 💌'}
+                    placeholder={form.attendance === 'yes' ? 'Chceš sa niečo spýtať alebo nám odkázať? 💛' : 'Odkaz, prianie… 💌'}
                     value={form.message}
                     onChange={e => set('message', e.target.value)} />
                 </div>

@@ -1,8 +1,8 @@
 const events = [
   { time: '',      event: 'Príchod hostí',        desc: 'Ubytovanie hostí', location: 'Podľa ubytovacieho zariadenia' },
-  { time: '15:00', event: 'Svadobný obrad',        desc: 'Slávnostný sobášny obrad', location: 'Kostol Preblahoslavenej Panny Márie, Vráble' },
-  { time: '16:00', event: 'Presun do vinárstva',   desc: 'Spoločný presun na svadobnú recepciu', location: 'Tajna Vineyards & Winery' },
-  { time: '16:30', event: 'Slávnostná hostina',    desc: 'Večera a prvé prípitky', location: 'Tajna Vineyards & Winery' },
+  { time: '16:00', event: 'Svadobný obrad',        desc: 'Slávnostný sobášny obrad', location: 'Kostol Preblahoslavenej Panny Márie, Vráble' },
+  { time: '17:00', event: 'Presun do vinárstva',   desc: 'Spoločný presun na svadobnú recepciu', location: 'Tajna Vineyards & Winery' },
+  { time: '17:30', event: 'Slávnostná hostina',    desc: 'Večera a prvé prípitky', location: 'Tajna Vineyards & Winery' },
   { time: '',      event: 'Prvý tanec',             desc: 'Tanec novomanželov', location: '' },
   { time: '',      event: 'Zábava & tanec',         desc: 'Hudba, tanec a oslava do rána', location: '' },
   { time: '19:00', event: 'Západ slnka',             desc: 'Romantický západ slnka na lúke vo viniciach', location: '' },
@@ -16,7 +16,7 @@ export default function Schedule() {
     <section id="program" className="schedule">
       <div className="container">
         <div className="section-header">
-          <div className="ornament"><span className="ornament-icon">✿</span></div>
+
           <h2>Program dňa</h2>
           <p>19. septembra 2026</p>
         </div>

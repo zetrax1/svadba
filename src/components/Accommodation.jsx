@@ -70,7 +70,7 @@ export default function Accommodation() {
     <section id="ubytovanie" className="accommodation">
       <div className="container">
         <div className="section-header">
-          <div className="ornament"><span className="ornament-icon">✿</span></div>
+
           <h2>Ubytovanie</h2>
           <p>Kde sa ubytovať</p>
         </div>
@@ -134,7 +134,7 @@ export default function Accommodation() {
             onToggle={() => toggle('friends')}
           >
             <p className="accommodation__rec-intro">
-              Vybrali sme niekoľko možností v okolí, ktoré odporúčame. Rezerváciu si zabezpečte individuálne.
+              Vybrali sme niekoľko možností v okolí, ktoré odporúčame. Rezerváciu si zabezpečte prosím individuálne.
             </p>
             <div className="accommodation__rec-grid">
               {friendsRecs.map((rec, i) => (

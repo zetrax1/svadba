@@ -3,7 +3,7 @@ export default function Hudba() {
     <section id="hudba" className="hudba">
       <div className="container">
         <div className="section-header">
-          <div className="ornament"><span className="ornament-icon">✿</span></div>
+
           <h2>Hudba</h2>
           <p>Doplň párty playlist</p>
         </div>

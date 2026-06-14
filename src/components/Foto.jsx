@@ -24,7 +24,7 @@ export default function Foto() {
     <section id="foto" className="foto">
       <div className="container">
         <div className="section-header">
-          <div className="ornament"><span className="ornament-icon">✿</span></div>
+
           <h2>Fotky</h2>
           <p>Zdieľajte vaše spomienky</p>
         </div>

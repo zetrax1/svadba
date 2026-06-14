@@ -18,13 +18,6 @@
       'Odporúčame spoločnú dopravu — aby sme si spolu mohli všetci pripiť 🍷',
     ],
   },
-  {
-    icon: '📞',
-    title: 'Kontakt',
-    items: [
-      'V prípade akýchkoľvek otázok nás kontaktujte',
-    ],
-  },
 ]
 
 export default function WeddingParty() {
@@ -32,7 +25,7 @@ export default function WeddingParty() {
     <section id="party" className="party">
       <div className="container">
         <div className="section-header">
-          <div className="ornament"><span className="ornament-icon">✿</span></div>
+
           <h2>Organizačné info</h2>
           <p>Praktické detaily pre váš príjemný deň</p>
         </div>

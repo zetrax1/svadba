@@ -11,11 +11,7 @@ export default function Hero() {
         </h1>
         <div className="hero__divider" />
         <p className="hero__date">19. septembra 2026</p>
-        <p className="hero__venue-hint">Tajna Vineyards &amp; Winery · Tajná, Slovakia</p>
-      </div>
-      <div className="hero__scroll">
-        <span>Scroll</span>
-        <div className="hero__scroll-arrow" />
+        <p className="hero__venue-hint">Kostol Preblahoslavenej Panny Márie · Tajna Vineyards &amp; Winery</p>
       </div>
     </section>
   )

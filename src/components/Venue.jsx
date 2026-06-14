@@ -20,7 +20,7 @@ export default function Venue() {
     <section id="miesto" className="venue">
       <div className="container">
         <div className="section-header">
-          <div className="ornament"><span className="ornament-icon">✿</span></div>
+
           <h2>Miesta konania</h2>
           <p>Kde sa stretneme</p>
         </div>
@@ -45,7 +45,7 @@ export default function Venue() {
                 </div>
                 <div className="venue__detail">
                   <span className="venue__detail-icon">🕒</span>
-                  <span>Obrad o 15:00</span>
+                  <span>Obrad o 16:00</span>
                 </div>
               </div>
               <a href={mapsUrl(CHURCH_LAT, CHURCH_LON)} target="_blank" rel="noopener noreferrer" className="venue__btn">
@@ -69,7 +69,7 @@ export default function Venue() {
               <div className="venue__details">
                 <div className="venue__detail">
                   <span className="venue__detail-icon">🕒</span>
-                  <span>Začiatok o 16:00</span>
+                  <span>Začiatok o 17:00</span>
                 </div>
                 <div className="venue__detail">
                   <span className="venue__detail-icon">🚌</span>

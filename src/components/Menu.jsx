@@ -48,7 +48,7 @@ export default function Menu() {
     <section id="menu" className="menu">
       <div className="container">
         <div className="section-header">
-          <div className="ornament"><span className="ornament-icon">✿</span></div>
+
           <h2>Menu</h2>
           <p>Slávnostná hostina</p>
         </div>

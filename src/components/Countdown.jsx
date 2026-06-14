@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 
-const WEDDING_DATE = new Date('2026-09-19T15:00:00')
+const WEDDING_DATE = new Date('2026-09-19T16:00:00')
 
 function getTimeLeft() {
   const diff = WEDDING_DATE - new Date()
@@ -28,7 +28,7 @@ export default function Countdown() {
     <section id="countdown" className="countdown">
       <div className="container">
         <div className="section-header">
-          <div className="ornament"><span className="ornament-icon">✿</span></div>
+
           <h2>Odpočítavame</h2>
           <p>Do svadby zostáva</p>
         </div>
