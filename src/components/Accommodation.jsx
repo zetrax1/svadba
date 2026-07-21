@@ -103,11 +103,11 @@ export default function Accommodation() {
                   </div>
                   <div className="accommodation__detail">
                     <span className="accommodation__detail-icon">🌙</span>
-                    <span>Check-in: 19. september 2026</span>
+                    <span>Check-in: 19. september 2026 (check-in možný od 12:00)</span>
                   </div>
                   <div className="accommodation__detail">
                     <span className="accommodation__detail-icon">☀️</span>
-                    <span>Check-out: 20. september 2026</span>
+                    <span>Check-out: 20. september 2026 (check-out možný do 12:00)</span>
                   </div>
                   <div className="accommodation__detail">
                     <span className="accommodation__detail-icon">🚗</span>

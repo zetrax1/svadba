@@ -164,6 +164,7 @@ export default function RSVP() {
 
           <h2>Potvrďte účasť</h2>
           <p>Prosíme o odpoveď do 1. septembra 2026</p>
+          <p>PS: posledný prihlásený vyhráva príhovor na svadbe</p>
         </div>
         <div className="rsvp__wizard">
           <div className="rsvp__dots">

@@ -4,7 +4,7 @@
     title: 'Dress code',
     items: [
       'Oblečte sa pohodlne, aby ste si mohli užiť tanec a zábavu až do rána',
-      'Žiadne farebné preferencie nie sú, oblečte si čo vám je príjemné a v čom sa cítite skvele',
+      'Žiadne farebné preferencie nie sú, oblečte si čo vám je príjemné a v čom sa budete cítiť skvelo',
       'Prosíme dbajte na to že budeme vo vinárstve/viniciach, preto prispôsobte svoju obuv (ideálne žiadne ihličkové podpatky)',
     ],
   },
@@ -15,7 +15,7 @@
       'Obrad: parkovanie pri kostole v Vrábľoch/pri hoteli kde ste ubytovaní',
       'Hostina: bezplatné parkovisko priamo vo vinárstve Tajna/odporúčame nechať auto pri hoteli kde ste ubytovaní, transport bude zabezpečený',
       'Vzdialenosť kostol → vinárstvo: cca 10 min autom',
-      'Odporúčame spoločnú dopravu — aby sme si spolu mohli všetci pripiť 🍷',
+      'Odporúčame spoločnú dopravu (dajte nám prosím vedieť či bude záujem sa odviesť spoločne alebo pôjdete vlastným autom) — aby sme si spolu mohli všetci pripiť 🍷',
     ],
   },
 ]
